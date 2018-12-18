@@ -1,5 +1,6 @@
 # Design Pattern
 
+The file "main.cpp" contains entry point function.
 
 
 ### Reference: 
