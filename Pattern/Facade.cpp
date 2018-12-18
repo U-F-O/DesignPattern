@@ -45,8 +45,9 @@ public:
                       TheaterLights* lights,
                       Screen* screen,
                       PopcornPopper* popper){
-        this -> amp = amp;
         
+        this -> amp = amp;
+
         this -> tuner = tuner;
         
         this -> dvd = dvd;
@@ -60,8 +61,6 @@ public:
         this -> screen = screen;
         
         this -> popper = popper;
-        
-        
         
     }
     
@@ -87,11 +86,7 @@ public:
         
         popper->on();
         
-        
-        
     }
-    
-    
     
     void endMovie(){
         
@@ -136,6 +131,16 @@ public:
         HomeTheaterFacade* homeTheater = new HomeTheaterFacade(amp,tune,dvd,cd,projector,theaterLight,screen,popcorn);
         homeTheater -> watchMovie();
         homeTheater -> endMovie();
+        
+        delete amp;
+        delete tune;
+        delete dvd;
+        delete cd;
+        delete projector;
+        delete theaterLight;
+        delete screen;
+        delete popcorn;
+        delete homeTheater;
         
     }
 };

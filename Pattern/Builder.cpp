@@ -31,6 +31,8 @@ public:
     
     virtual Vacation* getVacationPlanner() = 0;
     
+    virtual ~AbstractBuilder(){}
+    
 };
 
 
@@ -42,7 +44,6 @@ class VacationBuilder : public AbstractBuilder{
 public:
     
     VacationBuilder(){ vacation = new Vacation;}
-    
     
     void buildDay(){
         
@@ -88,6 +89,8 @@ public:
         builder->addHotel();
         builder->addReservation();
         builder->addSpecialEvent();
+        
+        delete builder;
         
     }
 };

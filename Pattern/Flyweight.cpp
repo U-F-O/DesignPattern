@@ -46,7 +46,11 @@ class Flyweight{
 public:
     
     static void test(){
+        
         TreeManager* treeManager = new TreeManager;
         treeManager->displayTrees();
+        
+        delete treeManager;
     }
+    
 };

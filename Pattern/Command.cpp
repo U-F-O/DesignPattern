@@ -6,6 +6,7 @@ class Command{
 public:
     
     virtual void execute() = 0;
+    virtual ~Command(){};
     
 };
 
@@ -129,8 +130,8 @@ public:
 
 class RemoteControl{
     
-    vector<Command *> onCommands;
     
+    vector<Command *> onCommands;
     vector<Command *> offCommands;
     
 public:
@@ -144,27 +145,24 @@ public:
         for(int i = 0; i < 7 ; ++i){
             
             onCommands[i] = new NoCommand;
-            
             offCommands[i] = new NoCommand;
         }
+        
     }
     
     void setCommand(int slot, Command* onCommand, Command* offCommand){
         
         onCommands[slot] = onCommand;
-        
         offCommands[slot] = offCommand;
         
     }
     
     void onButtonWasPushed(int slot){
-        
         onCommands[slot]->execute();
     }
     
     
     void offButtonWasPushed(int slot){
-        
         offCommands[slot]->execute();
         
     }
@@ -224,6 +222,14 @@ public:
         
         remoteControl->onButtonWasPushed(1);
         remoteControl->offButtonWasPushed(1);
+        
+        delete remoteControl;
+        delete light;
+        delete stereo;
+        delete lightOn;
+        delete lightOff;
+        delete stereoOnCommand;
+        delete stereoOffCommand;
         
     }
 };

@@ -22,9 +22,11 @@ class MasterGameObject{
     GameMemento* gameMemento;
     
 public:
+    
     void setCurrent(GameMemento* gameMemento){
         this->gameMemento = gameMemento;
     }
+    
     GameMemento* getCurrentState(){
         return gameMemento;
     }
@@ -48,9 +50,7 @@ public:
         MasterGameObject master;
         master.setCurrent(&gameMemento);
         
-        
         cout << "I'm playing "<<endl;
-        
         
         master.restoreState(&gameMemento);
         

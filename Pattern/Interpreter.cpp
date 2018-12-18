@@ -15,6 +15,7 @@ public:
     double getKey(string str){
         return (double)mp[str];
     }
+    
 };
 
 class Expression{
@@ -22,6 +23,7 @@ class Expression{
 public:
     
     virtual double interpret(Context* context) = 0;
+    virtual ~Expression(){}
     
 };
 
@@ -47,6 +49,7 @@ public:
         return key;
         
     }
+    
 };
 
 class FlyCommand: public Expression{
@@ -66,6 +69,7 @@ public:
         return context -> getKey(key);
         
     }
+    
 };
 
 class AddExpression: public Expression{
@@ -104,5 +108,6 @@ public:
         AddExpression addExpression(&var1,&var2);
         
         cout << addExpression.interpret(&context)<<endl;
+        
     }
 };

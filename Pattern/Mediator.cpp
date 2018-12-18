@@ -5,6 +5,7 @@ class Thing{
 public:
     
     virtual void onEvent() = 0;
+    virtual ~Thing(){}
     
 };
 
@@ -12,25 +13,31 @@ public:
 class Alarm :public Thing{
     
 public:
+    
     void onEvent(){
         cout << "This is alarm" << endl;
     }
+    
 };
 
 class Calendar: public Thing{
     
 public:
+    
     void onEvent(){
         cout << "This is calendar" << endl;
     }
+    
 };
 
 class Sprinkle: public Thing{
     
 public:
+    
     void onEvent(){
         cout << "This is sprinkle" << endl;
     }
+    
 };
 
 
@@ -55,6 +62,7 @@ public:
     }
     
     void play(Thing* thing){
+        
         if(typeid(*thing) == typeid(Alarm)){
             alarm->onEvent();
             calendar->onEvent();
@@ -90,5 +98,8 @@ public:
         mediator -> play(&alarm);
         mediator -> play(&calendar);
         mediator -> play(&sprinkle);
+        
+        delete mediator;
+        
     }
 };

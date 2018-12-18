@@ -4,6 +4,7 @@
 class CaffeineBeverage{
     
 public:
+    
     virtual void prepareRecipe() final{
         boilWater();
         brew();
@@ -21,6 +22,9 @@ public:
     void pourInCup() {
         cout<< "Pouring into Cup" << endl;
     }
+    
+    virtual ~CaffeineBeverage(){}
+    
 };
 
 class Tea:public CaffeineBeverage{
@@ -34,6 +38,7 @@ public:
     void addCondiments(){
         cout <<"Adding Lemon" << endl;
     }
+    
 };
 
 class Coffee:public CaffeineBeverage{
@@ -47,6 +52,7 @@ public:
     void addCondiments(){
         cout <<"Adding Sugar and Milk" << endl;
     }
+    
 };
 
 
@@ -55,11 +61,15 @@ class TemplateTest{
 public:
     
     static void test(){
+        
         Tea* tea =  new Tea;
         Coffee* coffee = new Coffee;
         cout << "~~~~~drinking tea~~~~~" << endl;
         tea->prepareRecipe();
         cout << "~~~~~drinking coffee~~~~~" << endl;
         coffee->prepareRecipe();
+        
+        delete tea;
+        delete coffee;
     }
 };

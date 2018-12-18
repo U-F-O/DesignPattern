@@ -3,13 +3,16 @@
 class FileBase{
     
 public:
+    
     virtual void CopyFile() = 0;
+    virtual ~FileBase(){}
     
 };
 
 class FileManager : public FileBase{
     
 public:
+    
     void CopyFile(){
         cout << "I'm coping file" << endl;
     }
@@ -30,6 +33,7 @@ public:
         cout << "This is File Proxy: ";
         file->CopyFile();
     }
+    
 };
 
 
@@ -44,6 +48,10 @@ public:
         
         FileProxy* fileproxy = new FileProxy(filemanager);
         fileproxy->CopyFile();
+        
+        delete filemanager;
+        delete fileproxy;
+        
     }
 };
 

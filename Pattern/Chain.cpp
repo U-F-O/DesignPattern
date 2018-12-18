@@ -15,6 +15,8 @@ public:
     
     Handler* getNext(){ return successor;}
     
+    virtual ~Handler(){}
+    
 };
 
 class SpamHandler: public Handler{
@@ -93,6 +95,10 @@ public:
             handler = handler->getNext();
         }
         
-
+        delete handler;
+        delete handler1;
+        delete handler2;
+        delete handler3;
+        
     }
 };

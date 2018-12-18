@@ -6,6 +6,7 @@ public:
     
     virtual void on() = 0;
     virtual void off()= 0;
+    virtual ~TV(){}
     
 };
 
@@ -34,12 +35,14 @@ public:
 class RemoteControl_Bridge{
     
 protected:
+    
     TV * tv;
     
 public:
     
     virtual void on() = 0;
     virtual void off() = 0;
+    virtual ~RemoteControl_Bridge(){};
     
 };
 
@@ -70,8 +73,8 @@ public:
     void previousChannel(){
 
         cout << "previous channel" <<endl;
-      
     }
+    
 };
 
 
@@ -95,6 +98,11 @@ public:
         remote2->nextChannel();
         remote2->previousChannel();
         remote2->off();
+        
+        delete sony;
+        delete rca;
+        delete remote;
+        delete remote2;
 
     }
 };

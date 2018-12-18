@@ -2,13 +2,16 @@
 
 
 class MenuItem {
+    
     string name;
     string description;
     bool vegetarian;
     double price;
     
 public:
+    
     MenuItem(){ }
+    
     MenuItem(string name, string description, bool vegetarian, double price)
     {
         this->name = name;
@@ -28,9 +31,13 @@ public:
 };
 
 class Iterator{
+    
 public:
+    
     virtual bool hasNext() = 0;
     virtual MenuItem* next() = 0;
+    virtual ~Iterator(){};
+    
 };
 
 class DinerMenuIterator:public Iterator{
@@ -81,14 +88,18 @@ public:
 };
 
 class PancakeHouseMenu {
+    
     vector<MenuItem> menuItems;
+    
 public:
     
     PancakeHouseMenu() {
+        
         addItem("A_PancakeHouse", "This is A_PancakeHouse", true, 1.99);
         addItem("B_PancakeHouse", "This is B_PancakeHouse", true, 2.00);
         addItem("C_PancakeHouse", "This is C_PancakeHouse", false, 2.99);
         addItem("D_PancakeHouse", "This is D_PancakeHouse", false, 3.00);
+        
     }
     
     void addItem(string name, string description, bool vegetarian, double price)
@@ -104,6 +115,7 @@ public:
 };
 
 class DinerMenu {
+    
     static const int MAX_ITEMS = 6;
     int numberOfItems = 0;
     MenuItem menuItems[MAX_ITEMS];
@@ -180,6 +192,7 @@ public:
         
         cout << endl;
     }
+    
 };
 
 
@@ -195,6 +208,10 @@ public:
         Waitress* waitress = new Waitress(pancakeHouseMenu,dinnerMenu);
         
         waitress -> printWaitress();
+        
+        delete pancakeHouseMenu;
+        delete dinnerMenu;
+        delete waitress;
         
     }
 };

@@ -5,20 +5,27 @@
 class Observer;
 
 class Subject{
+    
 public:
+    
     virtual void registerObserver(Observer* o) = 0;
     virtual void removeObserver(Observer* o) = 0;
     virtual void notifyObservers()=0;
+    virtual ~Subject(){}
+    
 };
 
 class Observer{
     
 protected:
+    
     int id;
     
 public:
+    
     virtual void update(float temp, float humidity, float pressure) = 0;
     int getID(){return id;}
+    virtual ~Observer(){}
     
 };
 
@@ -31,12 +38,14 @@ class DisplayElement {
 class WeatherData : public Subject{
     
 private:
+    
     vector<Observer* > observers;
     float temperature;
     float humidity;
     float pressure;
     
 public:
+    
     WeatherData(){}
     
     void registerObserver(Observer* o){
@@ -70,15 +79,19 @@ public:
         this->pressure=pressure;
         measurementsChanged();
     }
+    
 };
 
 class CurrentConditionDisplay :public Observer,public DisplayElement{
+    
 private:
+    
     float temperature;
     float humidity;
     Subject* weatherData;
     
 public:
+    
     CurrentConditionDisplay(Subject* weatherData,int id){
         this -> id = id;
         this -> weatherData = weatherData;
@@ -93,14 +106,18 @@ public:
     void display(){
         cout << "Current conditions: " << temperature << " F degrees and " <<humidity <<"% humidity"<<endl;
     }
+    
 };
 
 class StatisticsDisplay :public Observer,public DisplayElement{
+    
 private:
+    
     float temperature;
     Subject* weatherData;
     
 public:
+    
     StatisticsDisplay(Subject* weatherData,int id){
         this -> weatherData = weatherData;
         this -> id = id;
@@ -114,14 +131,18 @@ public:
     void display(){
         cout << "Statistics conditions: " << temperature << " F degrees" << endl;
     }
+    
 };
 
 class ForecastDisplay :public Observer,public DisplayElement{
+    
 private:
+    
     float pressure;
     Subject* weatherData;
     
 public:
+    
     ForecastDisplay(Subject* weatherData,int id){
         this -> id = id;
         this -> weatherData = weatherData;
@@ -135,6 +156,7 @@ public:
     void display(){
         cout << "Current pressure: " << pressure << endl;
     }
+    
 };
 
 class ObserverTest{
@@ -142,6 +164,7 @@ class ObserverTest{
 public:
     
     static void test(){
+        
         WeatherData* weatherData = new WeatherData;
         
         CurrentConditionDisplay* currentConditionDisplay = new CurrentConditionDisplay(weatherData,1);

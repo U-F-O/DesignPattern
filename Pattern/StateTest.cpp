@@ -18,5 +18,7 @@ public:
         gumballMachine->insertQuarter();
         gumballMachine->turnCrank();
         
+        delete gumballMachine;
+        
     }
 };

@@ -39,6 +39,13 @@ public:
 
         Singleton* test1 = Singleton::getInstance();
         Singleton* test2 = Singleton::getInstance();
+        
+        if(test2 == test1)
+            delete test1;
+        else{
+            delete test1;
+            delete test2;
+        }
 
     }
 };

@@ -2,21 +2,29 @@
 #include "Header.h"
 
 class MenuComponent{
+    
 public:
+    
     virtual void add(MenuComponent*){}
    // virtual MenuComponent* getChild(int);
     virtual string getName() = 0;
     virtual void print() = 0;
+    virtual ~MenuComponent(){}
+    
 };
 
 class MenuItemCom: public MenuComponent{
+    
     string name;
+    
 public:
+    
     MenuItemCom(string name){this -> name = name;}
     string getName(){return name;}
     void print(){
         cout << name << endl;
     }
+    
 };
 
 class MenuCom:public MenuComponent{
@@ -43,12 +51,15 @@ public:
             menuComponents[i]->print();
         }
     }
+    
 };
 
 class WaitressCom{
+    
     MenuComponent* allMenus;
     
 public:
+    
     WaitressCom(MenuComponent* menuComponent){
         this -> allMenus = menuComponent;
     }
@@ -56,6 +67,7 @@ public:
     void printMenu(){
         allMenus -> print();
     }
+    
 };
 
 class CompositeTest{
@@ -64,7 +76,7 @@ public:
     
     static void test(){
         
-       MenuComponent* pancake = new MenuItemCom("Pan Cake");
+        MenuComponent* pancake = new MenuItemCom("Pan Cake");
         MenuComponent* dinnerMenu = new MenuItemCom("dinnerMenu");
         MenuComponent* launchMenu = new MenuItemCom("launch");
         
@@ -75,6 +87,12 @@ public:
 
         WaitressCom* waitress = new WaitressCom(allMenu);
         waitress -> printMenu();
+        
+        delete pancake;
+        delete dinnerMenu;
+        delete launchMenu;
+        delete allMenu;
+        delete waitress;
         
     }
 };

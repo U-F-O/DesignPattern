@@ -9,6 +9,7 @@ GumballMachine::GumballMachine(int numberGumballs){
     soldState = new SoldState(this);
     
     this -> count = numberGumballs;
+    
     if (numberGumballs > 0)
         state = noQuarterState;
     else

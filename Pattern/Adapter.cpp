@@ -8,8 +8,9 @@ class DuckAda{
 public:
     
     virtual void quack() = 0 ;
-    
     virtual void fly() = 0;
+    
+    virtual ~DuckAda(){};
     
 };
 
@@ -97,11 +98,15 @@ class AdapterTest{
 public:
     
     static void test(){
+        
         Turkey * turkey = new Turkey;
         DuckAda* duck = new TurkeyAdapter(turkey);
         
         duck->quack();
         duck->fly();
+        
+        delete turkey;
+        delete duck;
         
     }
 };

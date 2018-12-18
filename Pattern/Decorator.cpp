@@ -5,6 +5,7 @@
 class Beverage{
     
 protected:
+    
     string description = "Unknown Beverage";
     
 public:
@@ -13,6 +14,8 @@ public:
         return description;
     }
     
+    virtual ~Beverage(){}
+
 };
 
 
@@ -29,7 +32,9 @@ public:
 class CondimentDecorator: public Beverage{
     
 public:
+    
     virtual string getDescription() = 0;
+    virtual ~CondimentDecorator(){}
     
 };
 
@@ -54,13 +59,17 @@ class DecoratorTest{
 public:
     
     static void test(){
+        
         Beverage* beverage = new Espresso;
         cout << beverage->getDescription() << endl;
+        
         beverage = new Mocha(beverage);
         cout << beverage->getDescription() << endl;
+        
         beverage = new Mocha(beverage);
         cout << beverage->getDescription()<<endl;
-
+        
+        delete beverage;
     }
     
 };

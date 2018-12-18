@@ -6,27 +6,36 @@ class Dough{
 protected:
     
     string name;
+    virtual ~Dough(){}
     
 };
 
 class ThinCrustDough: public Dough{
     
 public:
+    
     ThinCrustDough(){
         name = "I'm thin crust dough";
     }
+    
 };
 
 class Sauce{
     
 protected:
+    
     string name;
+
+public:
+    
+    virtual ~Sauce(){}
     
 };
 
 class MarinaraSauce: public Sauce{
     
 public:
+    
     MarinaraSauce(){
         name =  "I'm MarinaraSauce";
     }
@@ -38,6 +47,10 @@ protected:
     
     string name;
     
+public:
+    
+    virtual ~Cheese(){}
+
 };
 
 class ReggianoCheese: public Cheese{
@@ -53,9 +66,12 @@ public:
 class  PizzaIngredientFactory{
     
 public:
+    
     virtual Dough* createDough() = 0;
     virtual Sauce* createSauce() = 0;
     virtual Cheese* createCheese() = 0;
+    virtual ~PizzaIngredientFactory(){}
+
     
 };
 
@@ -82,14 +98,15 @@ public:
 class AbstractPizza{
     
 protected:
+    
     string name;
     Dough* dough;
     Sauce* sauce;
     Cheese* cheese;
     vector<string>toppings;
     
-    
 public:
+    
     virtual void prepare()  = 0;
     
     void bake(){
@@ -111,6 +128,9 @@ public:
     void setName(string name){
         this -> name = name;
     }
+    
+    virtual ~AbstractPizza(){}
+
 };
 
 class AbstractCheesePizza : public AbstractPizza{
@@ -149,16 +169,19 @@ public:
         sauce = ingredientFactory->createSauce();
         cheese = ingredientFactory->createCheese();
     }
+    
 };
 
 class AbstractPizzaStore{
     
 public:
+    
     virtual AbstractPizza* createPizze(string type)=0;
     
     AbstractPizza* orderPizza(string type){
         
         AbstractPizza* pizza = createPizze(type);
+        
         pizza -> prepare();
         pizza -> bake();
         pizza -> cut();
@@ -166,6 +189,9 @@ public:
         
         return pizza;
     }
+    
+    virtual ~AbstractPizzaStore(){}
+
 };
 
 class AbstractNYStylePizzaStore: public AbstractPizzaStore{
@@ -197,6 +223,7 @@ public:
 class AbstractChicagoStylePizzaStore : public AbstractPizzaStore{
     
 public:
+    
     AbstractPizza* createPizze(string type){
         
         AbstractPizza * pizza = NULL;
@@ -214,11 +241,8 @@ public:
         }
         return pizza;
     }
+    
 };
-
-
-
-
 
 class AbstractFactoryTest{
     
@@ -232,6 +256,10 @@ public:
         AbstractPizza* pizza = nyStore->orderPizza("cheese");
         
         pizza = chicagoStore->orderPizza("clam");
+        
+        delete nyStore;
+        delete chicagoStore;
+        delete pizza;
         
     }
 };
